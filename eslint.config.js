@@ -1,47 +1,54 @@
 import globals from 'globals'
-import js from '@eslint/js'
-import react from 'eslint-plugin-react'
-import reactHooks from 'eslint-plugin-react-hooks'
-import reactRefresh from 'eslint-plugin-react-refresh'
+import pluginJs from '@eslint/js'
 import stylisticJs from '@stylistic/eslint-plugin-js'
 
+
+/** @type {import('eslint').Linter.Config[]} */
 export default [
-    { ignores: ['dist',], },
+    pluginJs.configs.recommended,
     {
-        files: ['**/*.{js,jsx}',],
+        files: ['**/*.js'],
         languageOptions: {
-            ecmaVersion: 2020,
-            globals: globals.browser,
-            parserOptions: {
-                ecmaVersion: 'latest',
-                ecmaFeatures: { jsx: true, },
-                sourceType: 'module',
+            sourceType: 'module',
+            globals: {
+                ...globals.node,
             },
+            ecmaVersion: 'latest',
         },
-        settings: { react: { version: '18.3', }, },
+
         plugins: {
-            react,
-            'react-hooks': reactHooks,
-            'react-refresh': reactRefresh,
-            '@stylistic/js': stylisticJs,
+            '@stylistic/js': stylisticJs
         },
         rules: {
-            ...js.configs.recommended.rules,
-            ...react.configs.recommended.rules,
-            ...react.configs['jsx-runtime'].rules,
-            ...reactHooks.configs.recommended.rules,
-            'react/prop-types': 'off',
-            '@stylistic/js/indent': ['error', 4,],
-            '@stylistic/js/semi': ['error', 'never',],
-            '@stylistic/js/comma-dangle': ['error', 'always',],
-            '@stylistic/js/comma-spacing': ['error', { 'after': true, },],
-            '@stylistic/js/jsx-quotes': ['error', 'prefer-single',],
-            '@stylistic/js/quotes': ['error', 'single', {
-                'allowTemplateLiterals': 'always',
-            },],
-            'eqeqeq': ['error', 'always',],
-            '@stylistic/js/object-curly-spacing': ['error', 'always',],
-            '@stylistic/js/arrow-spacing': ['error', { 'before': true, 'after': true, },],
+            '@stylistic/js/indent': [
+                'error',
+                4
+            ],
+            '@stylistic/js/linebreak-style': [
+                'error',
+                'windows'
+            ],
+            '@stylistic/js/quotes': [
+                'error',
+                'single'
+            ],
+            '@stylistic/js/semi': [
+                'error',
+                'never'
+            ],
+            'eqeqeq': 'error',
+            'no-trailing-spaces': 'error',
+            'object-curly-spacing': [
+                'error', 'always'
+            ],
+            'arrow-spacing': [
+                'error', { 'before': true, 'after': true },
+            ],
+            'no-console': 'off',
+            'no-unused-vars': 'off',
         },
+    },
+    {
+        ignores: ['dist/**', 'build/**']
     },
 ]
