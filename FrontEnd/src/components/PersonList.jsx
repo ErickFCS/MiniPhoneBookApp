@@ -1,6 +1,6 @@
-import Button from 'react-bootstrap/esm/Button'
-import Card from 'react-bootstrap/esm/Card'
-import Stack from 'react-bootstrap/esm/Stack'
+import Button from 'react-bootstrap/Button'
+import Card from 'react-bootstrap/Card'
+import Stack from 'react-bootstrap/Stack'
 
 
 const Person = ({ name, number, onDelete, },) => (

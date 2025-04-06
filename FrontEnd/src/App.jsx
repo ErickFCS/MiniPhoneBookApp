@@ -61,12 +61,12 @@ const App = () => {
         }
         const newPerson = { name: newName, number: newNumber, visible: true, }
 
-        phonebookService.createData(newPerson,).then(() => {
+        phonebookService.createData(newPerson,).then((addedPerson) => {
             setMessage(`${newName} added to the Phone Book`,)
             setTimeout(() => {
                 setMessage(null,)
             }, 3000,)
-            setPersons(persons.concat(newPerson,),)
+            setPersons(persons.concat({ ...addedPerson, visible: true },),)
         },).catch((err,) => {
             console.log(err,)
             setError(err.response.data.error || 'Unable to add person',)

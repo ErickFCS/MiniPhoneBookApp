@@ -1,29 +1,52 @@
 {
-  "name": "phonebook_backend",
+  "name": "phone-book",
+  "author": "Erick Fernando Carvalho Sanchez",
   "version": "1.0.0",
-  "main": "./src/main.js",
   "type": "module",
   "scripts": {
-    "start": "node ./src/main.js",
-    "dev": "nodemon ./src/main.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint ."
+    "start:s": "node ./src/main.js",
+    "dev:f": "vite ./FrontEnd",
+    "dev:s": "nodemon ./src/main.js",
+    "lint": "pnpm lint:f && pnpm lint:s",
+    "lintFix": "pnpm lint:f --fix && pnpm lint:s --fix",
+    "lint:f": "eslint -c ./FrontEnd/eslint.config.js ./FrontEnd",
+    "lint:s": "eslint .",
+    "build": "pnpm build:c && pnpm build:s",
+    "build:c": "vite build ./FrontEnd --outDir ../dist/Client",
+    "build:s": "vite build ./FrontEnd --outDir ../dist/Server --ssr ./src/entry-server.jsx",
+    "preview": "vite preview ./FrontEnd",
+    "ssg": "node ssg.js",
+    "json-server": "json-server -p3001 --watch ./FrontEnd/db.json"
   },
-  "author": "Erick Fernando Carvalho Sanchez",
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "axios": "^1.8.1",
+    "bootstrap": "^5.3.3",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "mongoose": "^8.9.3",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "react": "^19.0.0",
+    "react-bootstrap": "^2.10.9",
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
-    "@eslint/js": "^9.17.0",
-    "@stylistic/eslint-plugin-js": "^2.12.1",
-    "eslint": "^9.17.0",
-    "globals": "^15.14.0",
-    "nodemon": "^3.1.9"
+    "@eslint/js": "^9.21.0",
+    "@stylistic/eslint-plugin-js": "^4.1.0",
+    "@types/express": "^5.0.1",
+    "@types/node": "^22.14.0",
+    "@types/react": "^19.0.10",
+    "@types/react-dom": "^19.0.4",
+    "@vitejs/plugin-react": "^4.3.4",
+    "eslint": "^9.21.0",
+    "eslint-plugin-react": "^7.37.4",
+    "eslint-plugin-react-hooks": "^5.1.0",
+    "eslint-plugin-react-refresh": "^0.4.19",
+    "globals": "^16.0.0",
+    "json-server": "1.0.0-beta.3",
+    "nodemon": "^3.1.9",
+    "vite": "^6.2.0"
   }
 }

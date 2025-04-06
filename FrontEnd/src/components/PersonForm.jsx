@@ -2,7 +2,7 @@ import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
 import Form from 'react-bootstrap/Form'
 import InputGroup from 'react-bootstrap/InputGroup'
-import Stack from 'react-bootstrap/esm/Stack'
+import Stack from 'react-bootstrap/Stack'
 
 
 const PersonForm = ({ handleAdd, handleNameInput, handleNumberInput, },) => (

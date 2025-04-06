@@ -1,54 +1,41 @@
-import globals from 'globals'
-import pluginJs from '@eslint/js'
-import stylisticJs from '@stylistic/eslint-plugin-js'
+import globals from "globals";
+import js from "@eslint/js";
+import stylisticJs from "@stylistic/eslint-plugin-js";
 
 
 /** @type {import('eslint').Linter.Config[]} */
 export default [
-    pluginJs.configs.recommended,
     {
-        files: ['**/*.js'],
+        files: ["**/*.js"],
         languageOptions: {
-            sourceType: 'module',
+            sourceType: "module",
             globals: {
-                ...globals.node,
+                ...globals.node
             },
-            ecmaVersion: 'latest',
+            ecmaVersion: "latest"
         },
 
         plugins: {
-            '@stylistic/js': stylisticJs
+            "@stylistic/js": stylisticJs
         },
         rules: {
-            '@stylistic/js/indent': [
-                'error',
-                4
-            ],
-            '@stylistic/js/linebreak-style': [
-                'error',
-                'windows'
-            ],
-            '@stylistic/js/quotes': [
-                'error',
-                'single'
-            ],
-            '@stylistic/js/semi': [
-                'error',
-                'never'
-            ],
-            'eqeqeq': 'error',
-            'no-trailing-spaces': 'error',
-            'object-curly-spacing': [
-                'error', 'always'
-            ],
-            'arrow-spacing': [
-                'error', { 'before': true, 'after': true },
-            ],
-            'no-console': 'off',
-            'no-unused-vars': 'off',
-        },
+            ...js.configs.recommended.rules,
+            "@stylistic/js/indent": ["error", 4],
+            "@stylistic/js/semi": ["error", "always"],
+            "@stylistic/js/comma-dangle": ["error", "never"],
+            "@stylistic/js/comma-spacing": ["error", { "after": true }],
+            "@stylistic/js/jsx-quotes": ["error", "prefer-double"],
+            "@stylistic/js/quotes": ["error", "double", {
+                "allowTemplateLiterals": "always"
+            }],
+            "eqeqeq": ["error", "always"],
+            "@stylistic/js/object-curly-spacing": ["error", "always"],
+            "@stylistic/js/arrow-spacing": ["error", { "before": true, "after": true }],
+            "no-console": "off",
+            "no-unused-vars": "off"
+        }
     },
     {
-        ignores: ['dist/**', 'build/**']
-    },
-]
+        ignores: ["dist/**", "build/**"]
+    }
+];
