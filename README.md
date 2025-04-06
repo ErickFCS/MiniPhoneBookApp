@@ -2,6 +2,10 @@
 
 This project is a mini web application built with React, Vite, and Bootstrap. It allows users to search and create phone entries.
 
+## Live preview
+
+[text](https://miniphonebookapp.onrender.com/)
+
 ## Technologies Used
 
 - React: A JavaScript library for building user interfaces.
